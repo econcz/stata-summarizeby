@@ -1,4 +1,4 @@
-*! version 1.1.0  20nov2020
+*! version 1.1.1  31jan2022  I I Bolotov
 program def summarizeby
 	version 8.0
 	/*
@@ -8,7 +8,7 @@ program def summarizeby
 	*/
 	syntax																	///
 	[anything(name=exp_list equalok)] [fw iw pw aw] [if] [in]				///
-	[, CLEAR SAving(string) *]
+	[, CLEAR SAving(string) Detail MEANonly Format *]
 	tempfile tmpf
 
 	// cummulate summarize results for each variable into `tmpf'
@@ -16,7 +16,8 @@ program def summarizeby
 		/* preserve data */
 		preserve
 		/* perform statsby on summarize with `options' */
-		qui statsby `exp_list' `if' `in' `weight', clear `options': sum `var'
+		qui statsby `exp_list' `if' `in' `weight', clear `options':			///
+			sum     `var', `detail' `meanonly' `format'
 		/* add varname of `var' */
 		gen variable = "`var'"
 		/* append saved data from `tmpf' (if it exists) */

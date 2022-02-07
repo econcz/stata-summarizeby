@@ -1,5 +1,5 @@
 {smcl}
-{* *! version 1.1.0  20nov2020}{...}
+{* *! version 1.1.1  31jan2022}{...}
 {viewerjumpto "Examples" "summarizeby##examples"}{...}
 {title:Title}
 
@@ -17,6 +17,9 @@ for {helpb summarize} with the same syntax but no ": command"
 
         * same example with by()
         {cmd:. summarizeby, clear by(foreign)}
+
+        * detailed example, collect all statistics returned by summarize
+        {cmd:. summarizeby, clear detail}
 
         * save main statistics into a DTA file
         {cmd:. summarizeby mean=r(mean) sd=r(sd) min=r(min) max=r(max), saving(stats)}
