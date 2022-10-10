@@ -1,4 +1,4 @@
-*! version 1.1.1  31jan2022  I I Bolotov
+*! version 1.1.2  07oct2022  I I Bolotov
 program def summarizeby
 	version 8.0
 	/*
@@ -19,9 +19,9 @@ program def summarizeby
 		preserve
 		/* perform statsby on summarize with `options'                        */
 		qui statsby `exp_list' `if' `in' `weight', clear `options':			///
-			sum     `var', `detail' `meanonly' `format'
+		sum `var', `detail' `meanonly' `format'
 		/* add varname of `var'                                               */
-		gen variable = "`var'"
+		g variable = "`var'"
 		/* append saved data from `tmpf' (if it exists)                       */
 		cap append using `tmpf'
 		/* save the result in `tmpf'                                          */
@@ -31,27 +31,27 @@ program def summarizeby
 	}
 
 	// work with `tmpf'                                                         
-	if "`clear'" != "" & "`saving'" != "" {
+	if `"`clear'"' != "" & `"`saving'"' != "" {
 		di as err "clear and saving() are mutually exclusive options"
 		exit 198
 	}
-	if "`clear'`saving'" != "" {
+	if trim(`"`clear'`saving'"') != "" {
 		/* preserve data (if `saving' is specified)                           */
-		if "`saving'" != "" {
+		if trim(`"`saving'"') != "" {
 			preserve
 		}
 		/* use data from `tmpf'                                               */
 		use `tmpf', clear
 		/* reverse sort observations                                          */
 		tempvar id
-		gen `id' = _n
+		g `id' = _n
 		gsort -`id'
 		drop `id'
 		order variable
-		label var variable "variable name"
+		la var variable "variable name"
 		/* save result (if `saving' is specified)                             */
-		if "`saving'" != "" {
-			save "`saving'", replace
+		if trim(`"`saving'"') != "" {
+			save `"`saving'"', replace
 		}
 	}
 	else {

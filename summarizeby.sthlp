@@ -1,5 +1,5 @@
 {smcl}
-{* *! version 1.1.1  31jan2022}{...}
+{* *! version 1.1.2  07oct2022}{...}
 {viewerjumpto "Examples" "summarizeby##examples"}{...}
 {title:Title}
 
@@ -37,3 +37,19 @@ for {helpb summarize} with the same syntax but no ": command"
 
         * export to excel
         {cmd:. export excel * using "stats.xlsx", firstrow(variables)}
+
+{title:Author}
+
+{pstd}
+{bf:Ilya Bolotov}
+{break}Prague University of Economics and Business
+{break}Prague, Czech Republic
+{break}{browse "mailto:ilya.bolotov@vse.cz":ilya.bolotov@vse.cz}
+
+{pstd}
+    Thanks for citing this software and my works on the topic:
+
+{p 8 8 2}
+Bolotov, I. (2020). SUMMARIZEBY: Stata module to use statsby functionality with
+    summarize. Available from
+    {browse "https://ideas.repec.org/c/boc/bocode/s458870.html"}.
